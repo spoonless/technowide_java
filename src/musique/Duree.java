@@ -86,7 +86,17 @@ public class Duree {
 		return tempsTotalEnSecondes;
 	}
 	
+	@Override
 	public String toString() {
 		return String.format(FORMAT_CHAINE_CARACTERES, this.getMinutes(), this.getSecondes());	
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Duree) {
+			Duree duree = (Duree) obj;
+			return duree.tempsTotalEnSecondes == this.tempsTotalEnSecondes;
+		}
+		return false;
 	}
 }

@@ -11,11 +11,5 @@ public class DemoAlbum2 {
 
 		Album album = new Album("The Wall");
 		album.setArtiste(groupeMusical);
-		
-		Object obj = album;
-		
-		Album album2 = (Album) obj;
-		
-		
 	}
 }
