@@ -2,12 +2,11 @@ package musique;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class Album {
+public class Album extends ProductionMusicale {
 	
-	private String titre;
 	private Integer annee;
-	private Artiste artiste;
 	private List<Piste> pistes = new ArrayList<>();
 	
 	public Album(String titre) {
@@ -15,12 +14,8 @@ public class Album {
 	}
 	
 	public Album(String titre, Integer annee) {
-		this.titre = titre;
+		super(titre);
 		this.annee = annee;
-	}
-	
-	public String getTitre() {
-		return titre;
 	}
 	
 	public boolean isAnneeConnue() {
@@ -39,6 +34,7 @@ public class Album {
 		return pistes;
 	}
 
+	@Override
 	public Duree getDuree() {
 		Duree duree = new Duree();
 		for (Piste piste : pistes) {
@@ -47,11 +43,12 @@ public class Album {
 		return duree;
 	}
 	
-	public Artiste getArtiste() {
-		return artiste;
-	}
-	
-	public void setArtiste(Artiste artiste) {
-		this.artiste = artiste;
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Album) {
+			Album album = (Album) obj;
+			return super.equals(obj) && Objects.equals(this.annee, album.annee);
+		}
+		return false;
 	}
 }
