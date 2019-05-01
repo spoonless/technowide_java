@@ -320,6 +320,20 @@
 <li class="toctree-l2"><a class="reference internal" href="les_collections.html#la-classe-outil-collections">La classe outil Collections</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="les_exceptions.html">Les exceptions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="les_exceptions.html#qu-est-ce-qu-une-exception">Qu’est-ce qu’une exception ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="les_exceptions.html#signaler-une-exception">Signaler une exception</a></li>
+<li class="toctree-l2"><a class="reference internal" href="les_exceptions.html#traiter-une-exception">Traiter une exception</a></li>
+<li class="toctree-l2"><a class="reference internal" href="les_exceptions.html#propagation-d-une-exception">Propagation d’une exception</a></li>
+<li class="toctree-l2"><a class="reference internal" href="les_exceptions.html#exceptions-et-polymorphisme">Exceptions et polymorphisme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="les_exceptions.html#le-bloc-finally">Le bloc finally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="les_exceptions.html#le-try-with-resources">Le try-with-resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="les_exceptions.html#hierarchie-applicative-d-exception">Hiérarchie applicative d’exception</a></li>
+<li class="toctree-l2"><a class="reference internal" href="les_exceptions.html#exception-cause">Exception cause</a></li>
+<li class="toctree-l2"><a class="reference internal" href="les_exceptions.html#les-erreurs-et-les-exceptions-runtime">Les erreurs et les exceptions runtime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="les_exceptions.html#choix-entre-checked-et-unchecked">Choix entre checked et unchecked</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="entrees_sorties.html">Les entrées/sorties</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="entrees_sorties.html#inputstream-et-classes-concretes">InputStream et classes concrètes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="entrees_sorties.html#outputstream-et-classes-concretes">OutputStream et classes concrètes</a></li>
@@ -424,12 +438,14 @@
 <li class="toctree-l1"><a class="reference internal" href="interface.html">Les interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="generiques.html">Méthodes et classes génériques</a></li>
 <li class="toctree-l1"><a class="reference internal" href="les_collections.html">Les collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="les_exceptions.html">Les exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entrees_sorties.html">Les entrées/sorties</a></li>
 </ul>
 </div>
 <div class="section" id="exercices">
 <h1>Exercices<a class="headerlink" href="#exercices" title="Lien permanent vers ce titre">¶</a></h1>
-<div class="exercice admonition">
+<blockquote>
+<div><div class="exercice admonition">
 <p class="admonition-title">Exercice - Créer une classe Duree</p>
 <p>Créez une classe <code class="docutils literal notranslate"><span class="pre">Duree</span></code>. Cette classe contient les méthodes</p>
 <dl class="simple">
@@ -482,7 +498,7 @@ pistes).</p>
 </div>
 <div class="exercice admonition">
 <p class="admonition-title">Exercice - Artistes</p>
-<p>Créez une classe <code class="docutils literal notranslate"><span class="pre">Artiste</span></code> définit par son nom. Un album et une piste
+<p>Créez une classe <code class="docutils literal notranslate"><span class="pre">Artiste</span></code> définie par son nom. Un album et une piste
 peuvent avoir un artiste. Créez une classe <code class="docutils literal notranslate"><span class="pre">GroupeMusical</span></code>. Un
 <code class="docutils literal notranslate"><span class="pre">GroupeMusical</span></code> est un <code class="docutils literal notranslate"><span class="pre">Artiste</span></code> qui peut contenir des artistes.</p>
 </div>
@@ -494,19 +510,65 @@ Utilisez la classe <code class="docutils literal notranslate"><span class="pre">
 et les méthodes communes aux classes <code class="docutils literal notranslate"><span class="pre">Album</span></code> et <code class="docutils literal notranslate"><span class="pre">Piste</span></code>.</p>
 </div>
 <div class="exercice admonition">
-<p class="admonition-title">Exercice - Classe GestionnaireMusique</p>
-<p>Créez la classe <code class="docutils literal notranslate"><span class="pre">GestionnaireMusique</span></code>. Il est possible d’ajouter des albums
-dans un gestionnaire de musique. De plus, le gestionnaire possède les méthodes
-suivantes :</p>
-<dl class="simple">
-<dt>List&lt;Album&gt; rechercherParTitre(String titre)</dt><dd><p>Pour retourner la liste des albums dont le titre contient la valeur
-passée en paramètre.</p>
-</dd>
-<dt>List&lt;Album&gt; rechercherParPiste(String titre)</dt><dd><p>Pour retourner la liste des albums dont le titre d’une des pistes
-contient la valeur passée en paramètre.</p>
-</dd>
-</dl>
+<p class="admonition-title">Implémentation de l’interface Comparable et utilisation de Comparator</p>
+<p>On souhaite pouvoir comparer les durées entre elles. Modifiez la classe
+<code class="docutils literal notranslate"><span class="pre">Duree</span></code> pour qu’elle implémente l’interface <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html">Comparable</a>.</p>
+<p>On souhaite trier les albums par nom, Modifiez la classe <code class="docutils literal notranslate"><span class="pre">Album</span></code> pour
+qu’elle implémente l’interface <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html">Comparable</a>. Triez une liste d’albums
+grâce à la méthode <a href="#id4"><span class="problematic" id="id5">sort_</span></a>.</p>
+<p>Triez ensuite la même liste d’albums selon l’année de sortie en créant
+une classe qui implémente <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html">Comparator</a> et que vous passerez en paramètre
+de la méthode <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html#sort">sort</a>.</p>
 </div>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice - Lecture de fichier CSV</p>
+<p>Créez une classe <code class="docutils literal notranslate"><span class="pre">ChargeurGestionnaireMusique</span></code>. Cette classe possède
+une méthode retournant une liste d’albums et accepte en paramètre le chemin
+d’un fichier. La méthode est capable de lire un fichier au format CSV.
+Chaque ligne du fichier commence par une colonne indiquant le type de la ligne: <code class="docutils literal notranslate"><span class="pre">A</span></code> pour un album
+et <code class="docutils literal notranslate"><span class="pre">P</span></code> pour une piste. Si la ligne commence par un <code class="docutils literal notranslate"><span class="pre">A</span></code> alors la colonne
+suivante est le nom de l’album. Si la ligne commence par un <code class="docutils literal notranslate"><span class="pre">P</span></code> alors la
+colonne suivante est le nom de la piste et la colonne encore après est la
+durée de la piste.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Exemple de fichier CSV</span><a class="headerlink" href="#id2" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-csv notranslate"><div class="highlight"><pre><span></span>A;Are You Experienced
+P;Purple Haze;2:46
+P;Manic Depression;3:46
+P;Hey Joe (Billy Roberts);3:23
+P;Love or Confusion;3:15
+P;May This Be Love;3:14
+P;I Don&#39;t Live Today;3:55
+P;The Wind Cries Mary;3:21
+P;Fire;2:34
+P;Third Stone from the Sun;6:40
+P;Foxy Lady;3:15
+P;Are You Experienced?;3:55
+</pre></div>
+</div>
+</div>
+<p>Il peut y avoir plusieurs albums par fichier. Les lignes indiquant les pistes
+suivent immédiatement la ligne de l’album.</p>
+</div>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice - Lecture de fichier CSV (suite)</p>
+<p>Modifier le chargement du fichier pour permettre le chargement des artistes.
+Le nom d’un artiste (s’il est présent) est indiqué après le nom de l’album.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Exemple de fichier CSV</span><a class="headerlink" href="#id3" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-csv notranslate"><div class="highlight"><pre><span></span>A;Are You Experienced;The Jimi Hendrix Experience
+</pre></div>
+</div>
+</div>
+<p>Attention, si le fichier contient plusieurs albums du même artiste, il
+ne faut créer qu’un seul objet <code class="docutils literal notranslate"><span class="pre">Artiste</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Astuce</p>
+<p>Utilisez une <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html">Map</a> pour stocker les artistes et retrouver facilement un
+artiste par son nom.</p>
+</div>
+</div>
+</div></blockquote>
 </div>
 
 
