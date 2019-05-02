@@ -5,11 +5,16 @@ package musique;
  * @author david
  * @since 1.0
  */
-public class Duree {
+public class Duree implements Comparable<Duree> {
 	
 	private static final String FORMAT_CHAINE_CARACTERES = "%1$d:%2$02d";
 	private static final int NOMBRE_SECONDES_DANS_UNE_MINUTE = 60;
 	private int tempsTotalEnSecondes;
+	
+	@Override
+	public int compareTo(Duree duree) {
+		return this.tempsTotalEnSecondes - duree.tempsTotalEnSecondes;
+	}
 	
 	/**
 	 * 
@@ -99,4 +104,5 @@ public class Duree {
 		}
 		return false;
 	}
+
 }

@@ -1,4 +1,8 @@
-package musique;
+package demo.musique;
+
+import musique.Album;
+import musique.Artiste;
+import musique.GroupeMusical;
 
 public class DemoAlbum2 {
 

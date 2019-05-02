@@ -1,4 +1,8 @@
-package musique;
+package demo.musique;
+
+import musique.Album;
+import musique.Duree;
+import musique.Piste;
 
 public class DemoAlbum {
 
@@ -12,7 +16,7 @@ public class DemoAlbum {
 		album.ajouter(new Piste("Ful Stop", new Duree(6, 20)));
 		
 		System.out.printf("Titre : %1$s (%2$s)\n", album.getTitre(), album.getDuree());
-		for(Piste piste : album.getPistes()) {
+		for(Piste piste : album) {
 			System.out.printf("- %1$-20s (%2$s)\n", piste.getTitre(), piste.getDuree());
 		}
 	}

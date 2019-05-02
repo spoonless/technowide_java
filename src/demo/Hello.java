@@ -1,4 +1,4 @@
-package musique;
+package demo;
 
 public class Hello {
 	public static void main(String[] args) {

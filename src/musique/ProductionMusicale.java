@@ -2,7 +2,7 @@ package musique;
 
 import java.util.Objects;
 
-public abstract class ProductionMusicale {
+public abstract class ProductionMusicale implements Durable {
 	
 	private String titre;
 	private Artiste artiste;
@@ -11,8 +11,6 @@ public abstract class ProductionMusicale {
 		this.titre = titre;
 	}
 	
-	public abstract Duree getDuree();
-
 	public String getTitre() {
 		return titre;
 	}

@@ -1,4 +1,7 @@
-package musique;
+package demo.musique;
+
+import musique.Duree;
+import musique.Piste;
 
 public class DemoPiste {
 

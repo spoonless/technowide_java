@@ -1,4 +1,6 @@
-package musique;
+package demo.musique;
+
+import musique.Duree;
 
 public class AffichageDuree {
 	
