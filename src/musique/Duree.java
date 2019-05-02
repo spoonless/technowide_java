@@ -105,4 +105,17 @@ public class Duree implements Comparable<Duree> {
 		return false;
 	}
 
+	public static Duree valueOf(String valeur) {
+		String[] minutesSecondes = valeur.split(":", 2);
+		if (minutesSecondes.length == 1) {
+			int secondes = Integer.valueOf(minutesSecondes[0]);
+			return new Duree(secondes);
+		} else if (minutesSecondes.length == 2) {
+			int minutes = Integer.valueOf(minutesSecondes[0]);
+			int secondes = Integer.valueOf(minutesSecondes[1]);
+			return new Duree(minutes, secondes);
+		}
+		return null;
+	}
+
 }

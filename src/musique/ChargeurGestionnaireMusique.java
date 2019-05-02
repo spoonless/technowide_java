@@ -14,11 +14,11 @@ public class ChargeurGestionnaireMusique {
 		for (String ligne : Files.readAllLines(path)) {
 			String[] colonnes = ligne.split(";");
 			if (colonnes.length > 0) {
-				if (colonnes[0].equals("A") && colonnes.length >=2) {
+				if (isLigneAlbum(colonnes)) {
 					albumCourant = new Album(colonnes[1]);
 					albums.add(albumCourant);
-				} else if (colonnes[0].equals("P")  && colonnes.length >=3) {
-					Piste piste = new Piste(colonnes[1], toDuree(colonnes[2]));
+				} else if (isLignePiste(colonnes)) {
+					Piste piste = new Piste(colonnes[1], Duree.valueOf(colonnes[2]));
 					albumCourant.ajouter(piste);
 				}
 
@@ -27,17 +27,11 @@ public class ChargeurGestionnaireMusique {
 		return albums;
 	}
 
-	private Duree toDuree(String valeur) {
-		String[] minutesSecondes = valeur.split(":", 2);
-		if (minutesSecondes.length == 1) {
-			int secondes = Integer.valueOf(minutesSecondes[0]);
-			return new Duree(secondes);
-		} else if (minutesSecondes.length == 2) {
-			int minutes = Integer.valueOf(minutesSecondes[0]);
-			int secondes = Integer.valueOf(minutesSecondes[1]);
-			return new Duree(minutes, secondes);
-		}
-		return null;
+	private boolean isLigneAlbum(String[] colonnes) {
+		return colonnes[0].equals("A") && colonnes.length >=2;
 	}
 
+	private boolean isLignePiste(String[] colonnes) {
+		return colonnes[0].equals("P")  && colonnes.length >=3;
+	}
 }
