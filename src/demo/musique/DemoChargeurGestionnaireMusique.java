@@ -16,6 +16,11 @@ public class DemoChargeurGestionnaireMusique {
 		
 		System.out.println("Nombre d'albums chargés : " + albums.size());
 		
+		for(Album album : albums) {
+			System.out.println(album);
+			System.out.println(album.getDuree());
+		}
+		
 	}
 
 }
