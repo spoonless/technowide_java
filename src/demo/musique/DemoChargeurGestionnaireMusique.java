@@ -19,6 +19,7 @@ public class DemoChargeurGestionnaireMusique {
 		for(Album album : albums) {
 			System.out.println(album);
 			System.out.println(album.getDuree());
+			System.out.println(album.getArtiste());
 		}
 		
 	}

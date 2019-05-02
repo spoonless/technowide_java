@@ -19,6 +19,11 @@ public class Artiste extends Object {
 	}
 	
 	@Override
+	public String toString() {
+		return this.nom;
+	}
+	
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Artiste) {
 			Artiste artiste = (Artiste) obj;
