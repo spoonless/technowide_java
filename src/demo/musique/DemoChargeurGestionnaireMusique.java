@@ -12,7 +12,8 @@ public class DemoChargeurGestionnaireMusique {
 	public static void main(String[] args) throws IOException {
 		
 		ChargeurGestionnaireMusique gestionnaireMusique = new ChargeurGestionnaireMusique();
-		List<Album> albums = gestionnaireMusique.charger(Paths.get("musique.csv"));
+		gestionnaireMusique.charger(Paths.get("musique.csv"));
+		List<Album> albums = gestionnaireMusique.getAlbums();
 		
 		System.out.println("Nombre d'albums chargés : " + albums.size());
 		

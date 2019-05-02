@@ -9,38 +9,55 @@ import java.util.List;
 import java.util.Map;
 
 public class ChargeurGestionnaireMusique {
+
+	private Map<String, Artiste> artistesMap = new HashMap<>();
+	private List<Album> albums = new ArrayList<Album>();
 	
-	public List<Album> charger(Path path) throws IOException {
-		
-		Map<String, Artiste> artistesMap = new HashMap<>();
-		
-		List<Album> albums = new ArrayList<Album>();
+	public List<Album> getAlbums() {
+		return albums;
+	}
+	
+	public void charger(Path path) throws IOException {
 		Album albumCourant = null;
 		for (String ligne : Files.readAllLines(path)) {
 			String[] colonnes = ligne.split(";");
 			if (colonnes.length > 0) {
 				if (isLigneAlbum(colonnes)) {
-					albumCourant = new Album(colonnes[1]);
-					albums.add(albumCourant);
-					if (colonnes.length >= 3) {
-						String nomArtiste = colonnes[2];
-						Artiste artiste = null;
-						if (artistesMap.containsKey(nomArtiste)) {
-							artiste = artistesMap.get(nomArtiste);
-						} else {
-							artiste = new Artiste(nomArtiste);
-							artistesMap.put(nomArtiste, artiste);
-						}
-						albumCourant.setArtiste(artiste);
-					}
+					albumCourant = creerAlbum(colonnes);
 				} else if (isLignePiste(colonnes)) {
-					Piste piste = new Piste(colonnes[1], Duree.valueOf(colonnes[2]));
-					albumCourant.ajouter(piste);
+					creerPiste(albumCourant, colonnes);
 				}
 
 			}
 		}
-		return albums;
+	}
+
+	private void creerPiste(Album albumCourant, String[] colonnes) {
+		Piste piste = new Piste(colonnes[1], Duree.valueOf(colonnes[2]));
+		albumCourant.ajouter(piste);
+	}
+
+	private Album creerAlbum(String[] colonnes) {
+		Album albumCourant;
+		albumCourant = new Album(colonnes[1]);
+		albums.add(albumCourant);
+		if (colonnes.length >= 3) {
+			String nomArtiste = colonnes[2];
+			Artiste artiste = creerArtiste(nomArtiste);
+			albumCourant.setArtiste(artiste);
+		}
+		return albumCourant;
+	}
+
+	private Artiste creerArtiste(String nomArtiste) {
+		Artiste artiste = null;
+		if (artistesMap.containsKey(nomArtiste)) {
+			artiste = artistesMap.get(nomArtiste);
+		} else {
+			artiste = new Artiste(nomArtiste);
+			artistesMap.put(nomArtiste, artiste);
+		}
+		return artiste;
 	}
 
 	private boolean isLigneAlbum(String[] colonnes) {
